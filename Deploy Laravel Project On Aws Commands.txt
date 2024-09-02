@@ -7,12 +7,13 @@ For Nginx Installation in VPS:-
 
 Install Mysql and PHP in VPS:-
 
-1- sudo apt install mysql-server
+1- sudo apt install mysql-server 
 2- sudo apt install php-fpm php-mysql
+  (sudo apt install php8.1 php8.1-fpm php8.1-mysql) for specfic php version
+
 3- sudo service php8.1-fpm status (check if fpm running or not)
 4- sudo service nginx status (check if nginx running or not)
 5- sudo apt install composer
-6- sudo apt install nodejs
 
 
 Made SSH Connection with Git Hub and Vps (Method 1):-
