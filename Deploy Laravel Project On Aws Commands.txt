@@ -76,8 +76,10 @@ Make Permisson to storage and bootstrap folder:-
 1- sudo chmod 777 -R storage/
 2- sudo chmod 777 -R bootstrap/
 
+That is all for Laravel Project.
+----------------------------------------------------------------------------------------------------------------------
 
-Start PM2 service:-
+Start PM2 service:-  //for node only
 1- cd /path/to/your/laravel/project
 2- pm2 start hooked.js --name="hooked"
 3- pm2 status
