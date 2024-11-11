@@ -1,1 +1,4 @@
-This document provides a comprehensive list of commands for deploying a Laravel project on an AWS EC2 instance running Ubuntu, including the installation of Node.js and all necessary dependencies. It covers the steps required to set up the server environment, configure the backend and frontend, and ensure everything is ready for production. Follow these instructions to efficiently upload and run your Laravel application alongside Node.js on AWS
+This document provides a comprehensive list of commands for deploying a Laravel project on an AWS EC2 instance running Ubuntu,
+including the installation of Node.js and all necessary dependencies. It covers the steps required to set up the server environment,
+configure the backend and frontend, and ensure everything is ready for production.
+Follow these instructions to efficiently upload and run your Laravel application alongside Node.js on AWS
