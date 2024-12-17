@@ -28,3 +28,8 @@ Step 6: Test the Connection
 
 Then, test the connection:
 7.mysql -u my_user -p -h localhost my_database
+
+
+Step 7: import Sql file:
+
+8. mysql -u username -p database_name < file.sql
