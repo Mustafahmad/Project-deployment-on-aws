@@ -7,7 +7,7 @@ sudo apt upgrade
 sudo apt install nginx
 ```
 
-<h2>2. Install MySQL and PHP on VPS </h2>
+<h2 align="center">2. Install MySQL and PHP on VPS </h2>
 <h3>Install MySQL Server:</h3>
 
 ```bash
