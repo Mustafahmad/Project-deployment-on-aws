@@ -19,7 +19,7 @@ sudo apt install mysql-server
 
 <h3>Install PHP and PHP-FPM:</h3>
 
-<p>To install PHP and PHP-FPM, use the following command:</p>
+* To install PHP and PHP-FPM, use the following command:
 
 ```bash
 sudo apt install php-fpm php-mysql
@@ -52,34 +52,35 @@ sudo apt install composer
 
 <h2 align="center">3. Setup SSH Connection with GitHub and VPS </h2>
 <h3>Method 1: Using ed25519 SSH Key</h3>
-<p>* Generate SSH keys:</p>
+
+* Generate SSH keys:
 
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-<p>* Copy the public key:</p>
+* Copy the public key:
 
 ```bash
 cat .ssh/id_ed25519.pub
 ```
 <h3>Method 2: Using rsa SSH Key</h3>
-<p>* Generate SSH keys:</p>
+* Generate SSH keys:
 
 ```bash
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
-<p>* Copy the public key:</p>
+* Copy the public key:
 
 ```bash
 cat .ssh/id_rsa.pu
 ```
 
-<p>* Paste the public key on GitHub:</p>
+* Paste the public key on GitHub:
 - Go to GitHub > your project > Settings > Deploy Keys > Paste the key and save.
 
-<p>* Test the SSH connection to GitHub:</p>
+* Test the SSH connection to GitHub:
 
 ```bash
 ssh -T git@github.com
@@ -95,26 +96,26 @@ sudo chown -R ubuntu:ubuntu /var/www/html
 
 <p>You can use your username instead of ubuntu as appropriate.</p>
 
-Note: Run git **clone** command without **sudo** on the server.
+* Note: Run git **clone** command without **sudo** on the server.
 
 
-<h2 align="Center">* 4. Set Up Nginx Server on Your IP</h2>
+<h2 align="Center">4. Set Up Nginx Server on Your IP</h2>
 
-<p>* Navigate to the **sites-available** directory:</p>
+* Navigate to the **sites-available** directory:
 
 ```bash
 cd /etc/nginx/sites-available/
 
 ```
 
-<p>* Create and edit your Nginx configuration file:</p>
+* Create and edit your Nginx configuration file:
 
 ```bash
 sudo nano laravel_project
 
 ```
 
-<p>* Add the following configuration (adjust paths and domain as needed):</p>
+* Add the following configuration (adjust paths and domain as needed):
 
 ```bash
 
@@ -137,21 +138,21 @@ server {
 }
 
 ```
-<p>* Create a symbolic link to the sites-enabled directory:</p>
+* Create a symbolic link to the sites-enabled directory:
 
 ```bash
 sudo ln -s /etc/nginx/sites-available/laravel_project /etc/nginx/sites-enabled/
 
 ```
 
-<p>* Test the Nginx configuration:</p>
+* Test the Nginx configuration:
 
 ```bash
 sudo nginx -t
 
 ```
 
-<p>* Restart Nginx to apply the changes:</p>
+* Restart Nginx to apply the changes:
 
 ```bash
 sudo systemctl restart nginx
