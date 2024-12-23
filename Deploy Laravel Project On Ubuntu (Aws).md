@@ -1,4 +1,9 @@
-<h1 align="center">1. Nginx Installation on VPS </h1>
+<h1>LEMP Stack Installation Guide</h1>
+
+
+
+
+<h2 align="center">1. Nginx Installation on VPS </h2>
 
 
 ```bash
@@ -49,34 +54,34 @@ sudo apt install composer
 
 <h2 align="center">3. Setup SSH Connection with GitHub and VPS </h2>
 <h3>Method 1: Using ed25519 SSH Key</h3>
-<p>1.Generate SSH keys:</p>
+<p>* 1.Generate SSH keys:</p>
 
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-<p>2.Copy the public key:</p>
+<p>* 2.Copy the public key:</p>
 
 ```bash
 cat .ssh/id_ed25519.pub
 ```
 <h3>Method 2: Using rsa SSH Key</h3>
-<p>1.Generate SSH keys:</p>
+<p>* 1.Generate SSH keys:</p>
 
 ```bash
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
-<p>2.Copy the public key:</p>
+<p>* 2.Copy the public key:</p>
 
 ```bash
 cat .ssh/id_rsa.pu
 ```
 
-<p>3.Paste the public key on GitHub:</p>
-* Go to GitHub > your project > Settings > Deploy Keys > Paste the key and save.*
+<p>* 3.Paste the public key on GitHub:</p>
+- Go to GitHub > your project > Settings > Deploy Keys > Paste the key and save.
 
-<p>4.Test the SSH connection to GitHub:</p>
+<p>* 4.Test the SSH connection to GitHub:</p>
 
 ```bash
 ssh -T git@github.com
@@ -95,24 +100,23 @@ sudo chown -R ubuntu:ubuntu /var/www/html
 Note: Run git **clone** command without **sudo** on the server.
 
 
-<h2 align="Center">4. Set Up Nginx Server on Your IP</h2>
+<h2 align="Center">* 4. Set Up Nginx Server on Your IP</h2>
 
-<p>1.Navigate to the **sites-available** directory:</p>
+<p>* 1.Navigate to the **sites-available** directory:</p>
 
 ```bash
 cd /etc/nginx/sites-available/
 
 ```
 
-
-<p>2.Create and edit your Nginx configuration file::</p>
+<p>* 2.Create and edit your Nginx configuration file:</p>
 
 ```bash
 sudo nano laravel_project
 
 ```
 
-<p>3.Add the following configuration (adjust paths and domain as needed):</p>
+<p>* 3.Add the following configuration (adjust paths and domain as needed):</p>
 
 ```bash
 
@@ -135,26 +139,26 @@ server {
 }
 
 ```
-<p>4.Create a symbolic link to the sites-enabled directory:</p>
+<p>*4.Create a symbolic link to the sites-enabled directory:*</p>
 
 ```bash
 sudo ln -s /etc/nginx/sites-available/laravel_project /etc/nginx/sites-enabled/
 
 ```
 
-<p>5.Test the Nginx configuration:</p>
+<p>* 5.Test the Nginx configuration:</p>
 
 ```bash
 sudo nginx -t
 
 ```
 
-<p>6.Restart Nginx to apply the changes::</p>
+<p>* 6.Restart Nginx to apply the changes:</p>
 
 ```bash
 sudo systemctl restart nginx
 ```
-<h2>5. Set Permissions for Storage and Bootstrap Folders</h2>
+<h2 align="center">5. Set Permissions for Storage and Bootstrap Folders</h2>
 <p>To make the storage and bootstrap folders writable:</p>
 
 ```bash
