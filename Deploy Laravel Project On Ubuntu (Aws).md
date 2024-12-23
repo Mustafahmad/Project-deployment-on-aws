@@ -1,13 +1,36 @@
-For Nginx Installation in VPS:-
-
-1- sudo apt update
-2- sudo apt upgrade
-3- sudo apt install nginx
+<h1 align="center">1. Nginx Installation on VPS </h1>
 
 
-Install Mysql and PHP in VPS:-
+```bash
+sudo apt update
+sudo apt upgrade
+sudo apt install nginx
+```
 
-1- sudo apt install mysql-server 
+<h2>2. Install MySQL and PHP on VPS </h2>
+<h3>Install MySQL Server:</h3>
+
+```bash
+sudo apt install mysql-server
+```
+
+
+
+<h3>Install PHP and PHP-FPM:</h3>
+
+```bash
+sudo apt install mysql-server
+```
+
+<p>To install PHP and PHP-FPM, use the following command:</p>
+
+```bash
+sudo apt install php-fpm php-mysql
+```
+
+
+```bash
+sudo apt install mysql-server 
 2- sudo apt install php-fpm php-mysql
   (sudo apt install php8.1 php8.1-fpm php8.1-mysql) for specfic php version
 
@@ -15,7 +38,7 @@ Install Mysql and PHP in VPS:-
 4- sudo service nginx status (check if nginx running or not)
 5- sudo apt install composer
 
-
+```
 Made SSH Connection with Git Hub and Vps (Method 1):-
 
 1- ssh-keygen -t ed25519 -C "your_email@example.com" (generate keys)
