@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -43,7 +43,7 @@
         }
     </style>
 </head>
-<body> -->
+<body>
 
     <h1>LEMP Stack Installation Guide</h1>
 
