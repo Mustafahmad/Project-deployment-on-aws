@@ -14,57 +14,112 @@ sudo apt install nginx
 sudo apt install mysql-server
 ```
 
-
-
 <h3>Install PHP and PHP-FPM:</h3>
-
-```bash
-sudo apt install mysql-server
-```
 
 <p>To install PHP and PHP-FPM, use the following command:</p>
 
 ```bash
 sudo apt install php-fpm php-mysql
 ```
-
+<p>If you need a specific PHP version (e.g., PHP 8.1):</p>
 
 ```bash
-sudo apt install mysql-server 
-2- sudo apt install php-fpm php-mysql
-  (sudo apt install php8.1 php8.1-fpm php8.1-mysql) for specfic php version
+sudo apt install php8.1 php8.1-fpm php8.1-mysql
+```
 
-3- sudo service php8.1-fpm status (check if fpm running or not)
-4- sudo service nginx status (check if nginx running or not)
-5- sudo apt install composer
+<h3>Check PHP-FPM Status:</h3>
+<p>To check if PHP-FPM is running:</p>
+
+```bash
+sudo service php8.1-fpm status
+```
+
+<h3>Check Nginx Status:</h3>
+<p>To check if Nginx is running:</p>
+
+```bash
+sudo service nginx status
+```
+
+<h3>Install Composer:</h3>
+
+```bash
+sudo apt install composer
+```
+
+<h2 align="center">3. Setup SSH Connection with GitHub and VPS </h2>
+<h3>Method 1: Using ed25519 SSH Key</h3>
+<p>1.Generate SSH keys:</p>
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+<p>2.Copy the public key:</p>
+
+```bash
+cat .ssh/id_ed25519.pub
+```
+<h3>Method 2: Using rsa SSH Key</h3>
+<p>1.Generate SSH keys:</p>
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+<p>2.Copy the public key:</p>
+
+```bash
+cat .ssh/id_rsa.pu
+```
+
+<p>3.Paste the public key on GitHub:</p>
+* Go to GitHub > your project > Settings > Deploy Keys > Paste the key and save.*
+
+<p>4.Test the SSH connection to GitHub:</p>
+
+```bash
+ssh -T git@github.com
+```
+
+<h3>Change Permissions for Folder When Git Cloning</h3>
+<p>When cloning a Git repository, make sure to set proper permissions:</p>
+
+```bash
+sudo chown -R ubuntu:ubuntu /var/www/html
 
 ```
-Made SSH Connection with Git Hub and Vps (Method 1):-
 
-1- ssh-keygen -t ed25519 -C "your_email@example.com" (generate keys)
-2- cat .ssh/id_ed25519.pub (copy public key)
-3- paste public key on github> project> settings> deploy keys> paste and save
-4- ssh -T git@github.com (check git connection is establish or not)
+<p>You can use your username instead of ubuntu as appropriate.</p>
+
+Note: Run git **clone** command without **sudo** on the server.
 
 
-Made SSH Connection with Git Hub and Vps (Method 2):-
+<h2 align="Center">4. Set Up Nginx Server on Your IP</h2>
 
-1- ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-2- cat .ssh/id_rsa.pub
-3- paste public key on github> project> settings> deploy keys> paste and save
-4- ssh -T git@github.com (check git connection is establish or not)
+<p>1.Navigate to the **sites-available** directory:</p>
 
-=> Make permission to folder when git clone: sudo chown -R ubuntu apps (sudo chown -R yourusername /var/www)
-=> when git clone on server command run without sudo
+```bash
+cd /etc/nginx/sites-available/
 
-Setup Nginx Server on Ip:-
+```
 
-1- cd /etc/nginx/sites-available/
-2- sudo nano laravel_project
-3- server {
+
+<p>2.Create and edit your Nginx configuration file::</p>
+
+```bash
+sudo nano laravel_project
+
+```
+
+<p>3.Add the following configuration (adjust paths and domain as needed):</p>
+
+```bash
+
+server {
     listen 80;
-    server_name your_domain.com;
-    root /var/www/html/laravel_project/public; # Adjust this path to the public directory of your Laravel project
+    server_name your_domain.com;  # Replace with your domain
+    root /var/www/html/laravel_project/public;  # Path to your Laravel project
     index index.php index.html index.htm;
 
     location / {
@@ -73,28 +128,55 @@ Setup Nginx Server on Ip:-
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php8.1-fpm.sock; # Adjust this path according to your PHP version
+        fastcgi_pass unix:/run/php/php8.1-fpm.sock;  # Adjust PHP version if needed
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         include fastcgi_params;
     }
 }
 
-4- sudo ln -s /etc/nginx/sites-available/laravel_project /etc/nginx/sites-enabled/
-5- sudo nginx -t
-6- sudo systemctl restart nginx
+```
+<p>4.Create a symbolic link to the sites-enabled directory:</p>
+
+```bash
+sudo ln -s /etc/nginx/sites-available/laravel_project /etc/nginx/sites-enabled/
+
+```
+
+<p>5.Test the Nginx configuration:</p>
+
+```bash
+sudo nginx -t
+
+```
+
+<p>6.Restart Nginx to apply the changes::</p>
+
+```bash
+sudo systemctl restart nginx
+```
+<h2>5. Set Permissions for Storage and Bootstrap Folders</h2>
+<p>To make the storage and bootstrap folders writable:</p>
+
+```bash
+sudo chmod 777 -R storage/
+sudo chmod 777 -R bootstrap/
+
+```
 
 
-Make Permisson to storage and bootstrap folder:-
-1- sudo chmod 777 -R storage/
-2- sudo chmod 777 -R bootstrap/
+<h3>Delete File Command:-</h3>
 
+```bash 
+rm -f file_name
+``` 
 
+<h3>Make Folder Command:-</h3>
 
-Delete File Command:-
-1- rm -f file_name 
+```bash
+sudo makdir foldername
+```
+<p>For More reference you can look for this file as well</p>
 
-Make Folder Command:-
-1- sudo makdir foldername
+[Reference][1]
 
-
-Follow this : https://github.com/geekyshow1/GeekyShowsNotes/blob/main/LEMP_Stack_Installation.md
+[1]: https://github.com/geekyshow1/GeekyShowsNotes/blob/main/LEMP_Stack_Installation.md
