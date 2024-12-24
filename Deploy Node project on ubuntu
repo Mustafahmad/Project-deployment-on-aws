@@ -54,25 +54,36 @@ ssh -T git@github.com
 sudo chown -R ubuntu:ubuntu /var/www/html
 
 ```
+<h2>3. Install Node</h2>
+
+```bash
+curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+node --version && npm --version
+```
 
 
 
-Install Node properly:-
+<h2>4. Install PM-2 service</h2>
 
-1- curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-2- sudo apt-get install -y nodejs
-3- node --version && npm --version
-
-Install PM-2 service:-
-1- sudo npm i pm2 -g
+```bash
+sudo npm i pm2 -g
+```
 
 
+<h2>5. Setup Nginx Server on Ip</h2>
 
-Setup Nginx Server on Ip:-
 
-1- cd /etc/nginx/sites-available/
-2- sudo nano nodeApp
-3- server{
+
+```bash
+cd /etc/nginx/sites-available/
+sudo nano nodeApp
+
+```
+* Add the following configuration (adjust paths and domain as needed):
+
+```bash
+server{
   	server_name 165.232.177.116;
 
       location / {
@@ -85,11 +96,28 @@ Setup Nginx Server on Ip:-
     }
 }
 
-4- sudo ln -s /etc/nginx/sites-available/nodeApp /etc/nginx/sites-enabled/
-5- sudo nginx -t
-6- sudo systemctl restart nginx
+```
+* Create a symbolic link to the sites-enabled directory:
 
+```bash
+sudo ln -s /etc/nginx/sites-available/laravel_project /etc/nginx/sites-enabled/
 
+```
+
+* Test the Nginx configuration:
+
+```bash
+sudo nginx -t
+
+```
+
+* Restart Nginx to apply the changes:
+
+```bash
+sudo systemctl restart nginx
+```
+
+```
 
 Start PM2 service:-  //for node only
 1- cd /path/to/your/node/project
