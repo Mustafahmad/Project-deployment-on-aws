@@ -1,27 +1,60 @@
-For Nginx Installation in VPS:-
-
-1- sudo apt update
-2- sudo apt upgrade
-3- sudo apt install nginx
+<h1>Node Project Setup</h1>
 
 
-Made SSH Connection with Git Hub and Vps (Method 1):-
-
-1- ssh-keygen -t ed25519 -C "your_email@example.com" (generate keys)
-2- cat .ssh/id_ed25519.pub (copy public key)
-3- paste public key on github> project> settings> deploy keys> paste and save
-4- ssh -T git@github.com (check git connection is establish or not)
+<h2 align="center">1. Nginx Installation on VPS </h2>
 
 
-Made SSH Connection with Git Hub and Vps (Method 2):-
+```bash
+sudo apt update
+sudo apt upgrade
+sudo apt install nginx
+```
 
-1- ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-2- cat .ssh/id_rsa.pub
-3- paste public key on github> project> settings> deploy keys> paste and save
-4- ssh -T git@github.com (check git connection is establish or not)
+<h2 align="center">2. Setup SSH Connection with GitHub and VPS </h2>
+<h3>Method 1: Using ed25519 SSH Key</h3>
 
-=> Make permission to folder when git clone: sudo chown -R ubuntu apps (sudo chown -R yourusername /var/www)
-=> when git clone on server command run without sudo
+* Generate SSH keys:
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+* Copy the public key:
+
+```bash
+cat .ssh/id_ed25519.pub
+```
+<h3>Method 2: Using rsa SSH Key</h3>
+
+* Generate SSH keys:
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+* Copy the public key:
+
+```bash
+cat .ssh/id_rsa.pu
+```
+
+* Paste the public key on GitHub:
+- Go to GitHub > your project > Settings > Deploy Keys > Paste the key and save.
+
+* Test the SSH connection to GitHub:
+
+```bash
+ssh -T git@github.com
+```
+
+<h3>Change Permissions for Folder When Git Cloning</h3>
+<p>When cloning a Git repository, make sure to set proper permissions:</p>
+
+```bash
+sudo chown -R ubuntu:ubuntu /var/www/html
+
+```
+
 
 
 Install Node properly:-
