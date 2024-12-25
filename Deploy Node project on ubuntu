@@ -54,7 +54,7 @@ ssh -T git@github.com
 sudo chown -R ubuntu:ubuntu /var/www/html
 
 ```
-<h2>3. Install Node</h2>
+<h2 align="center">3. Install Node</h2>
 
 ```bash
 curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
@@ -64,7 +64,7 @@ node --version && npm --version
 
 
 
-<h2>4. Install PM-2 service</h2>
+<h2 align="center">4. Install PM-2 service</h2>
 
 ```bash
 sudo npm i pm2 -g
@@ -117,20 +117,14 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
+<h2 align="center">6.Start PM2 service </h2>
+
+```bash
+cd /path/to/your/node/project
+pm2 start index.js --name="index"
+pm2 status
+pm2 logs index
 ```
-
-Start PM2 service:-  //for node only
-1- cd /path/to/your/node/project
-2- pm2 start index.js --name="index"
-3- pm2 status
-4- pm2 logs index
-
-=> After running socket successfully on port you need to register your port in Security groups> Edit inbound rules > Allow traffic on this port > pm2 restart hooked
+* After running socket successfully on port you need to register your port in Security groups> Edit inbound rules > Allow traffic on this port > pm2 restart hooked
  
 
-
-Delete File Command:-
-1- rm -f file_name 
-
-Make Folder Command:-
-1- sudo makdir foldername
