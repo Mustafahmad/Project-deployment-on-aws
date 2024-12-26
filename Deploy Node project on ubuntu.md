@@ -71,7 +71,7 @@ sudo npm i pm2 -g
 ```
 
 
-<h2>5. Setup Nginx Server on Ip</h2>
+<h2 align="center">5. Setup Nginx Server on Ip</h2>
 
 
 
@@ -117,7 +117,7 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
-<h2 align="center">6.Start PM2 service </h2>
+<h2 align="center">6. Start PM2 service </h2>
 
 ```bash
 cd /path/to/your/node/project
