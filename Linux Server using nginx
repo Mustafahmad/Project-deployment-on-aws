@@ -52,6 +52,3 @@ Make Directory
 sudo mkdir -p /var/www/mysite
 sudo chown -R $USER:$USER /var/www/mysite
 sudo chmod -R 755 /var/www/mysite
-
-
-
