@@ -1,7 +1,12 @@
-Project deployment for linux system ec2 Server
+<h1>LEMP Stack Installation Guide</h1>
 
-1: sudo yum update -y
-2: sudo amazon-linux-extras install nginx1 -y
+<h2 align="center">1. Nginx Installation on VPS </h2>
+
+```bash
+sudo yum update -y
+sudo amazon-linux-extras install nginx1 -y
+```
+
 3: sudo nano /etc/nginx/conf.d/mysite.conf    #mysite is the name of project
 4: server {
     listen 80;
