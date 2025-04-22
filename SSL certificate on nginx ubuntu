@@ -1,16 +1,21 @@
-How To Secure Nginx with Let's Encrypt on Ubuntu 20.04
 
-Install Certbot and it’s Nginx plugin with apt:
-1: sudo apt install certbot python3-certbot-nginx
+
+<h2 align="center">How To Secure Nginx with Let's Encrypt on Ubuntu 20.04</h2>
+
+1. Install Certbot and it’s Nginx plugin with apt:
+
+```bash
+    sudo apt install certbot python3-certbot-nginx
+```
 
 
 To check, open the configuration file for your domain using nano or your favorite text editor:
 2:sudo nano /etc/nginx/sites-available/example.com
 
 Find the existing server_name line. It should look like this:
-...
+```bash
 server_name example.com www.example.com;
-...
+```
 
 
 Check nginx syntax error

@@ -6,9 +6,12 @@
 sudo yum update -y
 sudo amazon-linux-extras install nginx1 -y
 ```
+  
 
-3: sudo nano /etc/nginx/conf.d/mysite.conf    #mysite is the name of project
-4: server {
+```bash
+ sudo nano /etc/nginx/conf.d/mysite.conf    #mysite is the name of project
+  
+  server {
     listen 80;
     server_name mysite.com www.mysite.com;
 
@@ -28,10 +31,11 @@ sudo amazon-linux-extras install nginx1 -y
         deny all;
     }
 }
-
-5: sudo nginx -t
-6: sudo systemctl restart nginx
-
+```
+```bash
+    sudo nginx -t
+    sudo systemctl restart nginx
+```
 Download node on linux
 
 # installs nvm (Node Version Manager)
