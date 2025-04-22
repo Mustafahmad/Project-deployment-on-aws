@@ -10,23 +10,27 @@
 
 
 To check, open the configuration file for your domain using nano or your favorite text editor:
-2:sudo nano /etc/nginx/sites-available/example.com
+```bash
+sudo nano /etc/nginx/sites-available/example.com
+```
 
 Find the existing server_name line. It should look like this:
+
 ```bash
 server_name example.com www.example.com;
 ```
 
 
 Check nginx syntax error
-3:sudo nginx -t
-
-4: sudo certbot --nginx -d example.com -d www.example.com    (depending upon the doamin, if it is subdomain don't add www.example.com )
+```bash
+sudo nginx -t
+sudo certbot --nginx -d example.com -d www.example.com  ##   (depending upon the doamin, if it is subdomain don't add www.example.com )
+```
 
 
 Step 5 — Verifying Certbot Auto-Renewal
 
-5:sudo systemctl status certbot.timer
+5. sudo systemctl status certbot.timer
 
 
 
