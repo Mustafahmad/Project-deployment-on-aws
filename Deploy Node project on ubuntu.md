@@ -100,7 +100,7 @@ server{
 * Create a symbolic link to the sites-enabled directory:
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/laravel_project /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/nodeApp /etc/nginx/sites-enabled/
 
 ```
 
