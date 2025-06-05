@@ -84,6 +84,7 @@ sudo nano nodeApp
 
 ```bash
 server{
+    listen 80;
   	server_name 165.232.177.116;
 
       location / {
