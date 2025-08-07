@@ -80,11 +80,3 @@ sudo ufw allow 27017
 For production setups, it’s recommended to bind MongoDB only to `localhost` **unless you're securing it** (e.g., with authentication, TLS, firewall rules).
 
 ---
-
-Let me know if:
-
-* You want MongoDB accessible **remotely**
-* You want to set up **MongoDB authentication**
-* You're running on a specific Ubuntu version (just to confirm compatibility)
-
-I'll tailor instructions accordingly.
