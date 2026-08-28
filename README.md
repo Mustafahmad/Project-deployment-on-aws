@@ -14,6 +14,7 @@ These are personal deployment notes — tested and used in production setups. Ea
 | [Laravel on Ubuntu (Apache)](./Deploy%20Laravel%20Project%20on%20ubuntu%20using%20Apache.md) | PHP, Apache, MySQL, Composer | Ubuntu |
 | [Laravel on Amazon Linux (Nginx)](./Linux%20Laravel%20Server%20Using%20Nginx.md) | PHP, Nginx | Amazon Linux |
 | [Node.js on Ubuntu](./Deploy%20Node%20project%20on%20ubuntu.md) | Node 20, NVM, PM2, Nginx | Ubuntu VPS |
+| [Next.js on EC2](./Deploy%20Next.js%20project%20on%20EC2.md) | Node 20, NVM, PM2, Nginx | AWS EC2 |
 | [React on Ubuntu](./Deploy%20React%20project%20on%20Ubuntu.md) | Node 20, PM2, Nginx | Ubuntu VPS |
 
 ---
@@ -35,14 +36,14 @@ These are personal deployment notes — tested and used in production setups. Ea
 
 ---
 
-## Shared Hosting (Coming Soon)
+## Shared Hosting
 
-Guides and config files for shared hosts (e.g. **Hostinger**) where the document root cannot point directly to Laravel's `public/` folder.
+For **Hostinger**, cPanel, and other Apache shared hosts where the document root cannot point to Laravel's `public/` folder.
 
-Planned additions:
-
-- `.htaccess` — redirect all requests to the `public/` directory
-- Notes on folder structure for shared hosting
+| Resource | Description |
+|----------|-------------|
+| [Shared Hosting Guide](./shared-hosting/README.md) | Folder structure and setup steps |
+| [`laravel-root.htaccess`](./shared-hosting/laravel-root.htaccess) | Root `.htaccess` — redirects all traffic to `public/` |
 
 ---
 

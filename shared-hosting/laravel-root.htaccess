@@ -1,0 +1,13 @@
+# Place this file in your Laravel project ROOT (same level as app/, public/, vendor/)
+# Rename to .htaccess when uploading to Hostinger or other shared Apache hosts
+#
+# Use when the host document root points to the project folder,
+# NOT to public/ — redirects all requests into public/
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Send everything to the public/ folder
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
