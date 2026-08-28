@@ -1,8 +1,10 @@
-<h1>LEMP Stack Installation Guide</h1>
+# Deploy Laravel on Ubuntu (AWS) — LEMP Stack
 
+Install Nginx, MySQL, PHP, and Composer on an Ubuntu VPS / AWS EC2 instance, then serve a Laravel project.
 
-<h2 align="center">1. Nginx Installation on VPS </h2>
+---
 
+## 1. Install Nginx
 
 ```bash
 sudo apt update
@@ -10,120 +12,96 @@ sudo apt upgrade
 sudo apt install nginx
 ```
 
-<h2 align="center">2. Install MySQL and PHP on VPS </h2>
-<h3>Install MySQL Server:</h3>
+---
+
+## 2. Install MySQL, PHP & Composer
+
+### MySQL
 
 ```bash
 sudo apt install mysql-server
 ```
 
-<h3>Install PHP and PHP-FPM:</h3>
-
-* To install PHP and PHP-FPM, use the following command:
+### PHP & PHP-FPM
 
 ```bash
 sudo apt install php-fpm php-mysql
 ```
-<p>If you need a specific PHP version (e.g., PHP 8.1):</p>
+
+For a specific PHP version (e.g. 8.1):
 
 ```bash
 sudo apt install php8.1 php8.1-fpm php8.1-mysql
 ```
 
-<h3>Check PHP-FPM Status:</h3>
-<p>To check if PHP-FPM is running:</p>
+Check services:
 
 ```bash
 sudo service php8.1-fpm status
-```
-
-<h3>Check Nginx Status:</h3>
-<p>To check if Nginx is running:</p>
-
-```bash
 sudo service nginx status
 ```
 
-<h3>Install Composer:</h3>
+### Composer
 
 ```bash
 sudo apt install composer
 ```
 
-<h2 align="center">3. Setup SSH Connection with GitHub and VPS </h2>
-<h3>Method 1: Using ed25519 SSH Key</h3>
+---
 
-* Generate SSH keys:
+## 3. SSH Connection with GitHub
+
+Set up deploy keys so you can clone private repos on the server.
+
+### Method 1: ed25519 Key
 
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
+cat ~/.ssh/id_ed25519.pub
 ```
 
-* Copy the public key:
-
-```bash
-cat .ssh/id_ed25519.pub
-```
-<h3>Method 2: Using rsa SSH Key</h3>
-
-* Generate SSH keys:
+### Method 2: RSA Key
 
 ```bash
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+cat ~/.ssh/id_rsa.pub
 ```
 
-* Copy the public key:
+Add the public key on GitHub:
 
-```bash
-cat .ssh/id_rsa.pu
-```
+**GitHub → Repository → Settings → Deploy Keys → Add deploy key**
 
-* Paste the public key on GitHub:
-- Go to GitHub > your project > Settings > Deploy Keys > Paste the key and save.
-
-* Test the SSH connection to GitHub:
+Test the connection:
 
 ```bash
 ssh -T git@github.com
 ```
 
-<h3>Change Permissions for Folder When Git Cloning</h3>
-<p>When cloning a Git repository, make sure to set proper permissions:</p>
+### Folder Permissions for Git Clone
 
 ```bash
 sudo chown -R ubuntu:ubuntu /var/www/html
-
 ```
 
-<p>You can use your username instead of ubuntu as appropriate.</p>
+> Use your username instead of `ubuntu` if different.  
+> Run `git clone` **without** `sudo`.
 
-* Note: Run git **clone** command without **sudo** on the server.
+---
 
-
-<h2 align="Center">4. Set Up Nginx Server on Your IP</h2>
-
-* Navigate to the **sites-available** directory:
+## 4. Nginx Site Configuration
 
 ```bash
 cd /etc/nginx/sites-available/
-
-```
-
-* Create and edit your Nginx configuration file:
-
-```bash
 sudo nano laravel_project
-
 ```
 
-* Add the following configuration (adjust paths and domain as needed):
+Add this configuration (adjust domain, paths, and PHP version):
 
-```bash
-
+```nginx
 server {
     listen 80;
-    server_name your_domain.com;  # Replace with your domain
-    root /var/www/html/laravel_project/public;  # Path to your Laravel project
+    server_name your_domain.com;
+    root /var/www/html/laravel_project/public;
     index index.php index.html index.htm;
 
     location / {
@@ -132,55 +110,34 @@ server {
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php8.1-fpm.sock;  # Adjust PHP version if needed
+        fastcgi_pass unix:/run/php/php8.1-fpm.sock;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         include fastcgi_params;
     }
 }
-
 ```
-* Create a symbolic link to the sites-enabled directory:
+
+Enable the site:
 
 ```bash
 sudo ln -s /etc/nginx/sites-available/laravel_project /etc/nginx/sites-enabled/
-
-```
-
-* Test the Nginx configuration:
-
-```bash
 sudo nginx -t
-
-```
-
-* Restart Nginx to apply the changes:
-
-```bash
 sudo systemctl restart nginx
 ```
-<h2 align="center">5. Set Permissions for Storage and Bootstrap Folders</h2>
-<p>To make the storage and bootstrap folders writable:</p>
+
+---
+
+## 5. Laravel Permissions
+
+Make `storage/` and `bootstrap/cache/` writable:
 
 ```bash
 sudo chmod 777 -R storage/
 sudo chmod 777 -R bootstrap/
-
 ```
 
+---
 
-<h3>Delete File Command:-</h3>
+## Reference
 
-```bash 
-rm -f file_name
-``` 
-
-<h3>Make Folder Command:-</h3>
-
-```bash
-sudo makdir foldername
-```
-<p>For More reference you can look for this file as well</p>
-
-[Reference][1]
-
-[1]: https://github.com/geekyshow1/GeekyShowsNotes/blob/main/LEMP_Stack_Installation.md
+- [GeekyShows LEMP Stack Installation](https://github.com/geekyshow1/GeekyShowsNotes/blob/main/LEMP_Stack_Installation.md)

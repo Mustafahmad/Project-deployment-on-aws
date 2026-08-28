@@ -1,17 +1,45 @@
-<h1>LEMP Stack Installation Guide</h1>
+# Laravel on Amazon Linux — Nginx
 
-<h2 align="center">1. Nginx Installation on VPS </h2>
+Nginx setup for Laravel on **Amazon Linux** (uses `yum`, not `apt`).
+
+---
+
+## 1. Install Nginx
 
 ```bash
 sudo yum update -y
 sudo amazon-linux-extras install nginx1 -y
 ```
-  
+
+Start and enable Nginx:
 
 ```bash
- sudo nano /etc/nginx/conf.d/mysite.conf    #mysite is the name of project
-  
-  server {
+sudo systemctl start nginx
+sudo systemctl enable nginx
+```
+
+---
+
+## 2. Create Project Directory
+
+```bash
+sudo mkdir -p /var/www/mysite
+sudo chown -R $USER:$USER /var/www/mysite
+sudo chmod -R 755 /var/www/mysite
+```
+
+---
+
+## 3. Nginx Site Configuration
+
+```bash
+sudo nano /etc/nginx/conf.d/mysite.conf
+```
+
+Replace `mysite` with your project name:
+
+```nginx
+server {
     listen 80;
     server_name mysite.com www.mysite.com;
 
@@ -24,7 +52,7 @@ sudo amazon-linux-extras install nginx1 -y
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # Update PHP version if needed
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
     }
 
     location ~ /\.ht {
@@ -32,32 +60,28 @@ sudo amazon-linux-extras install nginx1 -y
     }
 }
 ```
+
+Test and restart:
+
 ```bash
-    sudo nginx -t
-    sudo systemctl restart nginx
+sudo nginx -t
+sudo systemctl restart nginx
 ```
-Download node on linux
 
-# installs nvm (Node Version Manager)
+> For Laravel, set `root` to `/var/www/mysite/public` and use `try_files $uri $uri/ /index.php?$query_string;` in the `/` location block.
+
+---
+
+## 4. Install Node.js (NVM)
+
+```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+```
 
-# download and install Node.js (you may need to restart the terminal)
+Restart your terminal, then:
+
+```bash
 nvm install 20
-
-# verifies the right Node.js version is in the environment
-node -v # should print `v20.16.0`
-
-# verifies the right npm version is in the environment
-npm -v # should print `10.8.1`
-
-
-
-Start nginx commands:
-
-sudo systemctl start nginx
-sudo systemctl enable nginx
-
-Make Directory
-sudo mkdir -p /var/www/mysite
-sudo chown -R $USER:$USER /var/www/mysite
-sudo chmod -R 755 /var/www/mysite
+node -v   # e.g. v20.16.0
+npm -v    # e.g. 10.8.1
+```
