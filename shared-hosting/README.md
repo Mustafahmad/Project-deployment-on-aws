@@ -65,9 +65,16 @@ The root `.htaccess` rewrites all incoming URLs to the `public/` directory so re
 
 ---
 
+## Full Hostinger Guide
+
+For PHP version, MySQL, cron, and SSL: see [Laravel on Hostinger](../Laravel%20on%20Hostinger.md).
+
+---
+
 ## File Reference
 
 | File | Place at |
 |------|----------|
 | [`laravel-root.htaccess`](./laravel-root.htaccess) | Project root → rename to `.htaccess` |
+| [`laravel-public-htaccess-notes.md`](./laravel-public-htaccess-notes.md) | Troubleshooting `public/.htaccess` |
 | `public/.htaccess` | Already in Laravel — leave as-is |
